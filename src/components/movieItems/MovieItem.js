@@ -1,43 +1,20 @@
 import { FlatList, HStack, Box, Image, Heading, VStack, Button } from 'native-base';
 import * as React from 'react';
 import { SafeAreaView, Text, View } from 'react-native'
-import { DropdownMovies } from '../src/components/dropdowns/DropdownMovies';
 
 
-function Movies(props) {
+
+function MovieItem(props) {
 
     
     let [movies, setMovies] = React.useState(props.data);
     console.log("wererrrrrrrrrrrrrrrrrr", movies)
-    const getMovies = async (option="top_rated") => {
-      const moviesFromUrl = await fetchMovies(option)
-     console.log(moviesFromUrl.results)
-      setMovies(moviesFromUrl.results)
-    }
-    
-    React.useEffect(() => {
-      
-
-      getMovies()
-        }, [])
-
-      // Fetching Movies
-
-      const fetchMovies = async (option) => {
-        const mov = await fetch (`https://api.themoviedb.org/3/movie/${option}?api_key=1fb9aab42d89bcab6ae7677c8f20004d`)
-        const data = await mov.json()
-      
-        return data
-      }
-
-
+   
     
 return (
      
     <SafeAreaView >
-      <Box>
-        <DropdownMovies onSelect = {getMovies}/> 
-      </Box>
+  
             <FlatList
           data={movies}
           renderItem={({ item }) => (
@@ -83,4 +60,4 @@ return (
   
     );
   }
-  export default Movies;
+  export default MovieItem;

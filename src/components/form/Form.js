@@ -1,17 +1,19 @@
 import { Button, FormControl, Input, HStack, VStack, Icon } from 'native-base'
 import React, { useState } from 'react'
+import SearchDropDown from '../dropdowns/SearchDropDown'
  
 
 const Form = props => {
     const { onInputChange, fetchRecipes } = props
     const [formData, setData] = useState({})
     const [errors, setErrors] = useState({})
-
+    const[option, setOption] = useState('movie')
     const [search, setSearch] = useState('');
   
     
     const onSubmit = () => {
-        props.fetchSearch(search);
+      console.log(search, option)
+        props.fetchResult(search, option);
     }
 
 
@@ -37,6 +39,7 @@ const Form = props => {
                 </Button>
             </HStack>
         </FormControl>
+        <SearchDropDown fetchOption={setOption}/>
         </VStack>
     )
 }
