@@ -53,12 +53,12 @@ return (
         />
     </Box>
 
-    <Box mt={3} width="65%">
+    <Box mt={4} width="72%">
                 <VStack>
-                  <Heading width="66%" size="sm">{item.original_name}</Heading>
-                  <Text fontSize="sm">Popularity: {item.popularity}</Text>
-                  <Text fontSize="sm">Release Date: {item.first_air_date}</Text>
-                  <Button size="md" width="70%" onPress={() => {
+                  <Heading width="86%" size="md">{item.original_name}</Heading>
+                  <Text fontSize="md">Popularity: {item.popularity}</Text>
+                  <Text fontSize="md">Release Date: {item.first_air_date}</Text>
+                  <Button size="md" width="71%" onPress={() => {
                     navigation.navigate('moretv', {id:item.id})                  }}>
                     More Details
                   </Button>

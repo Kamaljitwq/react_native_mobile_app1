@@ -54,13 +54,13 @@ return (
         />
     </Box>
 
-    <Box mt={3} width="65%">
+    <Box mt={4} width="72%">
                 <VStack>
-                  <Heading width="66%" size="sm">{item.original_title}</Heading>
-                  <Text fontSize="sm">Popularity: {item.popularity}</Text>
-                  <Text fontSize="sm">Release Date: {item.release_date}</Text>
+                  <Heading width="86%" size="md">{item.original_title}</Heading>
+                  <Text fontSize="md">Popularity: {item.popularity}</Text>
+                  <Text fontSize="md">Release Date: {item.release_date}</Text>
 
-                  <Button size="md" width="70%" onPress={() => {
+                  <Button size="md" width="71%" onPress={() => {
                     navigation.navigate('more', {id:item.id})                  }}>
                     More Details
                   </Button>
