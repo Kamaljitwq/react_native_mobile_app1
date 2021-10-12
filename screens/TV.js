@@ -1,27 +1,28 @@
 import { FlatList, HStack, Box, Image, Heading, VStack , Button } from 'native-base';
 import * as React from 'react';
 import { SafeAreaView, Text, View } from 'react-native'
+import { DropdownTv } from '../src/components/dropdowns/DropdownTv';
 
 
 function TV({navigation}) {
 
     
     let [tv, setTv] = React.useState([]);
-  
+    const getTv = async (option="popular") => {
+      const tvFromUrl = await fetchTv(option)
+      setTv(tvFromUrl.results)
+    }
+
     
     React.useEffect(() => {
-      const getTv = async () => {
-        const tvFromUrl = await fetchTv()
-        setTv(tvFromUrl.results)
-      }
-
+     
       getTv()
         }, [])
 
       // Fetching Movies
 
-      const fetchTv = async () => {
-        const mov = await fetch ('https://api.themoviedb.org/3/tv/airing_today?api_key=1fb9aab42d89bcab6ae7677c8f20004d&language=en-US&page=1')
+      const fetchTv = async (option) => {
+        const mov = await fetch (`https://api.themoviedb.org/3/tv/${option}?api_key=1fb9aab42d89bcab6ae7677c8f20004d&language=en-US&page=1`)
         const data = await mov.json()
       
         return data
@@ -32,6 +33,9 @@ function TV({navigation}) {
 return (
      
     <SafeAreaView >
+      <Box>
+        <DropdownTv onSelect = {getTv}/> 
+      </Box>
             <FlatList
           data={tv}
           renderItem={({ item }) => (
@@ -55,7 +59,7 @@ return (
                   <Text fontSize="sm">Popularity: {item.popularity}</Text>
                   <Text fontSize="sm">Release Date: {item.first_air_date}</Text>
                   <Button size="md" width="70%" onPress={() => {
-                    navigation.navigate('more', {id:item.id, sar:"tv"})                  }}>
+                    navigation.navigate('moretv', {id:item.id})                  }}>
                     More Details
                   </Button>
 

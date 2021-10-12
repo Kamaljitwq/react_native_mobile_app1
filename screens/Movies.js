@@ -1,27 +1,29 @@
 import { FlatList, HStack, Box, Image, Heading, VStack, Button } from 'native-base';
 import * as React from 'react';
 import { SafeAreaView, Text, View } from 'react-native'
+import { DropdownMovies } from '../src/components/dropdowns/DropdownMovies';
 
 
 function Movies({navigation}) {
 
     
     let [movies, setMovies] = React.useState([]);
-  
+    const getMovies = async (option="top_rated") => {
+      const moviesFromUrl = await fetchMovies(option)
+     console.log(moviesFromUrl.results)
+      setMovies(moviesFromUrl.results)
+    }
     
     React.useEffect(() => {
-      const getMovies = async () => {
-        const moviesFromUrl = await fetchMovies()
-        setMovies(moviesFromUrl.results)
-      }
+      
 
       getMovies()
         }, [])
 
       // Fetching Movies
 
-      const fetchMovies = async () => {
-        const mov = await fetch ('https://api.themoviedb.org/3/movie/top_rated?api_key=1fb9aab42d89bcab6ae7677c8f20004d')
+      const fetchMovies = async (option) => {
+        const mov = await fetch (`https://api.themoviedb.org/3/movie/${option}?api_key=1fb9aab42d89bcab6ae7677c8f20004d`)
         const data = await mov.json()
       
         return data
@@ -32,6 +34,9 @@ function Movies({navigation}) {
 return (
      
     <SafeAreaView >
+      <Box>
+        <DropdownMovies onSelect = {getMovies}/> 
+      </Box>
             <FlatList
           data={movies}
           renderItem={({ item }) => (
@@ -56,7 +61,7 @@ return (
                   <Text fontSize="sm">Release Date: {item.release_date}</Text>
 
                   <Button size="md" width="70%" onPress={() => {
-                    navigation.navigate('more', {id:item.id, sar:"movie"})                  }}>
+                    navigation.navigate('more', {id:item.id})                  }}>
                     More Details
                   </Button>
 
