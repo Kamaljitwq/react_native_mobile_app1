@@ -1,4 +1,4 @@
-import { Button, FormControl, Input, HStack, VStack, Icon } from 'native-base'
+import { Button, FormControl, Input, HStack, VStack, Icon, Text } from 'native-base'
 import React, { useState } from 'react'
 import SearchDropDown from '../dropdowns/SearchDropDown'
  
@@ -35,7 +35,7 @@ const Form = props => {
             
                 />
                 <Button onPress={onSubmit}>
-                    Search
+                   <Text> Search </Text>
                 </Button>
             </HStack>
         </FormControl>

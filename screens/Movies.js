@@ -1,6 +1,8 @@
-import { FlatList, HStack, Box, Image, Heading, VStack, Button } from 'native-base';
 import * as React from 'react';
-import { SafeAreaView, Text, View } from 'react-native'
+import { FlatList, HStack, Box, Image, Heading, VStack, Button , Text} from 'native-base';
+
+import { SafeAreaView } from 'react-native'
+
 import { DropdownMovies } from '../src/components/dropdowns/DropdownMovies';
 
 
@@ -63,7 +65,7 @@ return (
 
                   <Button size="md" width="71%" onPress={() => {
                     props.navigation.navigate('more', {id:item.id})                  }}>
-                    More Details
+                    <Text>More Details</Text>
                   </Button>
 
                   

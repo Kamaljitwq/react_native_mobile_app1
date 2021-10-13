@@ -1,6 +1,6 @@
-import { FlatList, HStack, Box, Image, Heading, VStack , Button } from 'native-base';
+import { FlatList, HStack, Box, Image, Heading, VStack , Button, Text } from 'native-base';
 import * as React from 'react';
-import { SafeAreaView, Text, View } from 'react-native'
+import { SafeAreaView, View } from 'react-native'
 import { DropdownTv } from '../src/components/dropdowns/DropdownTv';
 
 
@@ -60,7 +60,7 @@ return (
                   <Text fontSize="md">Release Date: {item.first_air_date}</Text>
                   <Button size="md" width="71%" onPress={() => {
                     navigation.navigate('moretv', {id:item.id})                  }}>
-                    More Details
+                   <Text> More Details </Text>
                   </Button>
 
                   
